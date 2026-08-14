@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Sparkles, FileText, RefreshCw, AlertTriangle, Trash2 } from "lucide-react";
-import ResultCard from "./ResultCard";
+import AnalysisResult from "./AnalysisResult";
 
 const SAMPLE_SCAM = `Subject: Internship Offer - Remote Data Entry Assistant (Urgent)
 
@@ -131,7 +131,7 @@ function OfferAnalyzer() {
       // Calculate Verdict
       let verdict = "Safe";
       if (riskScore >= 70) {
-        verdict = "Fake";
+        verdict = "Scam";
       } else if (riskScore >= 25) {
         verdict = "Suspicious";
       }
@@ -143,7 +143,7 @@ function OfferAnalyzer() {
       let summary = "";
       let checklist = [];
 
-      if (verdict === "Fake") {
+      if (verdict === "Scam") {
         summary = "This internship offer shows strong indicators commonly associated with employment scams. Multiple high-severity red flags were detected, including unofficial communication mediums and suspicious equipment-buying requirements.";
         checklist = [
           "DO NOT send money, pay fees, or buy any equipment.",
@@ -292,7 +292,7 @@ function OfferAnalyzer() {
 
           {/* Results Panel */}
           <div id="analysis-results-view" className="w-full">
-            <ResultCard result={result} isAnalyzing={isAnalyzing} />
+            <AnalysisResult result={result} isAnalyzing={isAnalyzing} />
           </div>
 
         </div>
